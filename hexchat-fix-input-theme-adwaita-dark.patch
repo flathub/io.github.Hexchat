@@ -1,0 +1,25 @@
+From 76430228e12c6b71359a50bf7e8b4c3dd26043c9 Mon Sep 17 00:00:00 2001
+From: Patrick Griffis <tingping@tingping.se>
+Date: Fri, 12 May 2017 00:49:45 -0400
+Subject: [PATCH] Fix input theming with Adwaita-dark also
+
+---
+ src/fe-gtk/fe-gtk.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/fe-gtk/fe-gtk.c b/src/fe-gtk/fe-gtk.c
+index 0f23f7f7..ac98da37 100644
+--- a/src/fe-gtk/fe-gtk.c
++++ b/src/fe-gtk/fe-gtk.c
+@@ -296,7 +296,7 @@ create_input_style (GtkStyle *style)
+ 		/* gnome-themes-standard 3.20 relies on images to do theming
+ 		 * so we have to override that. */
+ 		g_object_get (settings, "gtk-theme-name", &theme_name, NULL);
+-		if (!g_strcmp0 (theme_name, "Adwaita"))
++		if (g_str_has_prefix (theme_name, "Adwaita"))
+ 			gtk_rc_parse_string (adwaita_workaround_rc);
+ 		g_free (theme_name);
+ 
+-- 
+2.12.2
+

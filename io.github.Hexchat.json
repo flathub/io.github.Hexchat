@@ -35,6 +35,10 @@
         {
           "type": "patch",
           "path": "hexchat-dbus-service-name.patch"
+        },
+        {
+          "type": "patch",
+          "path": "hexchat-fix-input-theme-adwaita-dark.patch"
         }
       ],
       "modules": [
