@@ -4,8 +4,6 @@
   "runtime-version": "3.24",
   "sdk": "org.gnome.Sdk",
   "command": "hexchat",
-  "rename-desktop-file": "hexchat.desktop",
-  "rename-appdata-file": "hexchat.appdata.xml",
   "rename-icon": "hexchat",
   "finish-args": [
     "--share=ipc",
@@ -21,6 +19,11 @@
         "--disable-perl",
         "--disable-stack-protector",
         "--enable-python=python3"
+      ],
+      "post-install": [
+        "sed '0,/hexchat.desktop/s/hexchat.desktop/io.github.Hexchat.desktop/' /app/share/appdata/hexchat.appdata.xml > /app/share/appdata/io.github.Hexchat.appdata.xml",
+        "rm /app/share/appdata/hexchat.appdata.xml",
+        "mv /app/share/applications/{hexchat,io.github.Hexchat}.desktop"
       ],
       "sources": [
         {
@@ -39,6 +42,10 @@
         {
           "type": "patch",
           "path": "hexchat-fix-input-theme-adwaita-dark.patch"
+        },
+        {
+          "type": "patch",
+          "path": "hexchat-provide-old-id.patch"
         }
       ],
       "modules": [
