@@ -1,7 +1,7 @@
 {
   "app-id": "io.github.Hexchat",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "3.24",
+  "runtime-version": "3.26",
   "sdk": "org.gnome.Sdk",
   "command": "hexchat",
   "rename-icon": "hexchat",
@@ -15,43 +15,18 @@
   "modules": [
     {
       "name": "hexchat",
+      "buildsystem": "meson",
+      "builddir": true,
       "config-opts": [
-        "--disable-perl",
-        "--disable-stack-protector",
-        "--enable-python=python3"
-      ],
-      "post-install": [
-        "sed '0,/hexchat.desktop/s/hexchat.desktop/io.github.Hexchat.desktop/' /app/share/appdata/hexchat.appdata.xml > /app/share/appdata/io.github.Hexchat.appdata.xml",
-        "rm /app/share/appdata/hexchat.appdata.xml",
-        "mv /app/share/applications/{hexchat,io.github.Hexchat}.desktop"
+        "--buildtype=release",
+        "-Ddbus-service-use-appid=true",
+        "-Dwith-perl=false"
       ],
       "sources": [
         {
-          "type": "git",
-          "url": "https://github.com/hexchat/hexchat.git",
-          "branch": "v2.12.4"
-        },
-        {
-          "type": "patch",
-          "path": "hexchat-notification-appid.patch"
-        },
-        {
-          "type": "patch",
-          "path": "hexchat-dbus-service-name.patch"
-        },
-        {
-          "type": "patch",
-          "path": "hexchat-fix-input-theme-adwaita-dark.patch"
-        },
-        {
-          "type": "patch",
-          "path": "hexchat-provide-old-id.patch"
-        },
-        {
-          "type": "shell",
-          "commands": [
-            "sed -i 's/\"hexchat\"/\"io.github.Hexchat\"/' src/fe-gtk/notifications/notification-libnotify.c"
-          ]
+          "type": "archive",
+          "url": "https://dl.hexchat.net/hexchat/hexchat-2.14.0.tar.xz",
+          "sha256": "f3214b7675096c0f850405eac284cf395b9f65276ae1db5fb17eef8d83cc5ddf"
         }
       ],
       "modules": [
