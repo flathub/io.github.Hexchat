@@ -19,7 +19,8 @@
       "builddir": true,
       "config-opts": [
         "--buildtype=release",
-        "-Ddbus-service-use-appid=true"
+        "-Ddbus-service-use-appid=true",
+        "-Dwith-perl=false"
       ],
       "sources": [
         {
