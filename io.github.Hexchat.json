@@ -22,6 +22,10 @@
         "-Ddbus-service-use-appid=true",
         "-Dwith-perl=false"
       ],
+      "cleanup": [
+        "/lib/pkgconfig",
+        "/share/man"
+      ],
       "sources": [
         {
           "type": "archive",
