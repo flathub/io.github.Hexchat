@@ -1,0 +1,72 @@
+From d01d0cc08c4c03f675e2e0ce8ffafe7e66db5da4 Mon Sep 17 00:00:00 2001
+From: Patrick Griffis <tingping@tingping.se>
+Date: Wed, 14 Mar 2018 18:01:44 -0400
+Subject: [PATCH] Load plugins from Flatpak extensions
+
+---
+ src/common/plugin.c | 33 +++++++++++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+
+diff --git a/src/common/plugin.c b/src/common/plugin.c
+index 3ad3c558..89440d46 100644
+--- a/src/common/plugin.c
++++ b/src/common/plugin.c
+@@ -440,15 +440,39 @@ plugin_get_libdir (void)
+ 		return HEXCHATLIBDIR;
+ }
+ 
++static GPtrArray *
++get_extension_dirs (void)
++{
++	g_autoptr(GPtrArray) array = NULL;
++	g_autofree char *extension_dir = NULL;
++	GDir *dir;
++	gchar *dir_entry;
++
++  extension_dir = g_build_filename (HEXCHATLIBDIR, "extensions", NULL);
++	dir = g_dir_open (extension_dir, 0, NULL);
++	if (dir == NULL)
++		return NULL;
++
++	array = g_ptr_array_new_full (2, g_free);
++	while ((dir_entry = g_dir_read_name (dir)))
++		g_ptr_array_add (array, g_build_filename (extension_dir, dir_entry, NULL));
++
++	g_dir_close (dir);
++	return g_steal_pointer (&array);
++}
++
+ void
+ plugin_auto_load (session *sess)
+ {
+ 	const char *lib_dir;
+ 	char *sub_dir;
++	guint i;
++	g_autoptr(GPtrArray) extension_dirs = NULL;
+ 	ps = sess;
+ 
+ 	lib_dir = plugin_get_libdir ();
+ 	sub_dir = g_build_filename (get_xdir (), "addons", NULL);
++	extension_dirs = get_extension_dirs ();
+ 
+ #ifdef WIN32
+ 	/* a long list of bundled plugins that should be loaded automatically,
+@@ -467,6 +491,15 @@ plugin_auto_load (session *sess)
+ 	for_files (lib_dir, "*."G_MODULE_SUFFIX, plugin_auto_load_cb);
+ #endif
+ 
++	if (extension_dirs)
++	{
++		for (i = 0; i < extension_dirs->len; ++i)
++		{
++			const char *dir = g_ptr_array_index (extension_dirs, i);
++			for_files (dir, "*."G_MODULE_SUFFIX, plugin_auto_load_cb);
++		}
++	}
++
+ 	for_files (sub_dir, "*."G_MODULE_SUFFIX, plugin_auto_load_cb);
+ 
+ 	g_free (sub_dir);
+-- 
+2.14.3
+

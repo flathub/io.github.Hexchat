@@ -1,5 +1,6 @@
 {
   "app-id": "io.github.Hexchat",
+  "branch": "stable",
   "runtime": "org.gnome.Platform",
   "runtime-version": "3.26",
   "sdk": "org.gnome.Sdk",
@@ -12,6 +13,16 @@
     "--share=network",
     "--env=SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt"
   ],
+  "add-extensions": {
+    "io.github.Hexchat.Plugin": {
+      "version": "2",
+      "directory": "lib/hexchat/plugins/extensions",
+      "add-ld-path": "lib",
+      "subdirectories": true,
+      "no-autodownload": true,
+      "autodelete": true
+    }
+  },
   "modules": [
     {
       "name": "hexchat",
@@ -26,11 +37,18 @@
         "/lib/pkgconfig",
         "/share/man"
       ],
+      "post-install": [
+        "install -d /app/lib/hexchat/plugins/extensions"
+      ],
       "sources": [
         {
           "type": "archive",
           "url": "https://dl.hexchat.net/hexchat/hexchat-2.14.1.tar.xz",
           "sha256": "b032e4bcebe2229f87047439979a1246ddcbf599e7e538baa3f2abfac9a003a2"
+        },
+        {
+          "type": "patch",
+          "path": "0001-Load-plugins-from-Flatpak-extensions.patch"
         }
       ],
       "modules": [
