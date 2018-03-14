@@ -11,6 +11,7 @@
     "--socket=x11",
     "--socket=session-bus",
     "--share=network",
+    "--filesystem=xdg-download",
     "--env=SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt"
   ],
   "add-extensions": {
