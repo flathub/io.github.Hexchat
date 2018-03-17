@@ -17,8 +17,9 @@
   "add-extensions": {
     "io.github.Hexchat.Plugin": {
       "version": "2",
-      "directory": "lib/hexchat/plugins/extensions",
+      "directory": "extensions",
       "add-ld-path": "lib",
+      "merge-dirs": "lib/hexchat/plugins",
       "subdirectories": true,
       "no-autodownload": true,
       "autodelete": true
@@ -39,7 +40,7 @@
         "/share/man"
       ],
       "post-install": [
-        "install -d /app/lib/hexchat/plugins/extensions"
+        "install -d /app/extensions"
       ],
       "sources": [
         {
@@ -49,7 +50,7 @@
         },
         {
           "type": "patch",
-          "path": "0001-Load-plugins-from-Flatpak-extensions.patch"
+          "path": "Load-plugins-from-Flatpak-extensions.patch"
         }
       ],
       "modules": [
