@@ -2,7 +2,7 @@
   "app-id": "io.github.Hexchat",
   "branch": "stable",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "3.26",
+  "runtime-version": "3.28",
   "sdk": "org.gnome.Sdk",
   "command": "hexchat",
   "rename-icon": "hexchat",
@@ -12,8 +12,7 @@
     "--socket=session-bus",
     "--share=network",
     "--socket=pulseaudio",
-    "--filesystem=xdg-download",
-    "--env=SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt"
+    "--filesystem=xdg-download"
   ],
   "add-extensions": {
     "io.github.Hexchat.Plugin": {
@@ -30,7 +29,6 @@
     {
       "name": "hexchat",
       "buildsystem": "meson",
-      "builddir": true,
       "config-opts": [
         "--buildtype=release",
         "-Ddbus-service-use-appid=true",
