@@ -68,8 +68,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://dl.hexchat.net/hexchat/hexchat-2.14.1.tar.xz",
-          "sha256": "b032e4bcebe2229f87047439979a1246ddcbf599e7e538baa3f2abfac9a003a2"
+          "url": "https://dl.hexchat.net/hexchat/hexchat-2.14.2.tar.xz",
+          "sha256": "7792b9e52560fbd3e10d75bfb5d138a20913a87771d676d296547f1b4ac09618"
         },
         {
           "type": "patch",
