@@ -27,30 +27,6 @@
   },
   "modules": [
     {
-      "name": "pango",
-      "config-opts": ["--disable-introspection"],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://download.gnome.org/sources/pango/1.40/pango-1.40.14.tar.xz",
-          "sha256": "90af1beaa7bf9e4c52db29ec251ec4fd0a8f2cc185d521ad1f88d01b3a6a17e3"
-        },
-        {
-          "type": "patch",
-          "path": "71aaeaf020340412b8d012fe23a556c0420eda5f.patch"
-        }
-      ],
-      "cleanup": [
-        "/bin",
-        "/include",
-        "/lib/*.la",
-        "/lib/*.a",
-        "/lib/pkgconfig",
-        "/share/gtk-doc",
-        "/share/man"
-      ]
-    },
-    {
       "name": "hexchat",
       "buildsystem": "meson",
       "config-opts": [
