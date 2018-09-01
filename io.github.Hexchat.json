@@ -50,6 +50,10 @@
         {
           "type": "patch",
           "path": "Load-plugins-from-Flatpak-extensions.patch"
+        },
+        {
+          "type": "patch",
+          "path": "sysinfo-Add-support-for-etc-os-release.patch"
         }
       ],
       "modules": [
