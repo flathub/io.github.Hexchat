@@ -2,7 +2,7 @@
   "app-id": "io.github.Hexchat",
   "branch": "stable",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "3.28",
+  "runtime-version": "3.30",
   "sdk": "org.gnome.Sdk",
   "command": "hexchat",
   "rename-icon": "hexchat",
@@ -16,7 +16,7 @@
   ],
   "add-extensions": {
     "io.github.Hexchat.Plugin": {
-      "version": "2",
+      "version": "18.08",
       "directory": "extensions",
       "add-ld-path": "lib",
       "merge-dirs": "lib/hexchat/plugins",
@@ -26,6 +26,7 @@
     }
   },
   "modules": [
+    "shared-modules/gtk2/gtk2.json",
     {
       "name": "hexchat",
       "buildsystem": "meson",
@@ -62,7 +63,6 @@
           "name": "lgi",
           "no-autogen": true,
           "build-options": {
-            "cflags": "-O2",
             "env": {
               "LUA_CFLAGS": "-I/app/include/luajit-2.1"
             }
