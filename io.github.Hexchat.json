@@ -2,7 +2,7 @@
   "app-id": "io.github.Hexchat",
   "branch": "stable",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "3.32",
+  "runtime-version": "3.34",
   "sdk": "org.gnome.Sdk",
   "command": "hexchat",
   "rename-icon": "hexchat",
@@ -27,6 +27,28 @@
   },
   "modules": [
     "shared-modules/gtk2/gtk2.json",
+    "shared-modules/dbus-glib/dbus-glib-0.110.json",
+    "org.luajit.Luajit.json",
+    {
+      "name": "lgi",
+      "no-autogen": true,
+      "build-options": {
+        "env": {
+          "LUA_CFLAGS": "-I/app/include/luajit-2.1"
+        }
+      },
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/pavouk/lgi/archive/0.9.2.tar.gz",
+          "sha256": "cfc4105482b4730b3a40097c9d9e7e35c46df2fb255370bdeb2f45a886548c4f"
+        },
+        {
+          "type": "shell",
+          "commands": [ "sed -i 's|/usr/local|/app|' ./lgi/Makefile" ]
+        }
+      ]
+    },
     {
       "name": "hexchat",
       "buildsystem": "meson",
@@ -35,6 +57,9 @@
         "-Ddbus-service-use-appid=true",
         "-Dwith-perl=false"
       ],
+      "build-options": {
+        "cflags": "-Wno-error=missing-include-dirs"
+      },
       "cleanup": [
         "/lib/pkgconfig",
         "/share/man"
@@ -45,39 +70,12 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://dl.hexchat.net/hexchat/hexchat-2.14.2.tar.xz",
-          "sha256": "7792b9e52560fbd3e10d75bfb5d138a20913a87771d676d296547f1b4ac09618"
+          "url": "https://dl.hexchat.net/hexchat/hexchat-2.14.3.tar.xz",
+          "sha256": "901a9d13db5a4da69b827f6093306bbd16863dc49016f7668bd3e4506512e882"
         },
         {
           "type": "patch",
           "path": "Load-plugins-from-Flatpak-extensions.patch"
-        },
-        {
-          "type": "patch",
-          "path": "sysinfo-Add-support-for-etc-os-release.patch"
-        }
-      ],
-      "modules": [
-        "org.luajit.Luajit.json",
-        {
-          "name": "lgi",
-          "no-autogen": true,
-          "build-options": {
-            "env": {
-              "LUA_CFLAGS": "-I/app/include/luajit-2.1"
-            }
-          },
-          "sources": [
-            {
-              "type": "archive",
-              "url": "https://github.com/pavouk/lgi/archive/0.9.2.tar.gz",
-              "sha256": "cfc4105482b4730b3a40097c9d9e7e35c46df2fb255370bdeb2f45a886548c4f"
-            },
-            {
-              "type": "shell",
-              "commands": [ "sed -i 's|/usr/local|/app|' ./lgi/Makefile" ]
-            }
-          ]
         }
       ]
     }
