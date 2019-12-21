@@ -76,6 +76,10 @@
         {
           "type": "patch",
           "path": "Load-plugins-from-Flatpak-extensions.patch"
+        },
+        {
+          "type": "patch",
+          "path": "0001-appdata-Add-OARS-information.patch"
         }
       ]
     }
