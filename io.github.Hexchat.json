@@ -16,7 +16,7 @@
   ],
   "add-extensions": {
     "io.github.Hexchat.Plugin": {
-      "version": "18.08",
+      "version": "19.08",
       "directory": "extensions",
       "add-ld-path": "lib",
       "merge-dirs": "lib/hexchat/plugins",
