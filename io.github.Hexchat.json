@@ -9,10 +9,14 @@
   "finish-args": [
     "--share=ipc",
     "--socket=x11",
-    "--socket=session-bus",
     "--share=network",
     "--socket=pulseaudio",
-    "--filesystem=xdg-download"
+    "--filesystem=xdg-download",
+
+    "--talk-name=org.freedesktop.Notifications",
+
+    /* Note that not all dbus services are used by HexChat but often common scripts */
+    "--talk-name=org.mpris.MediaPlayer2.*"
   ],
   "add-extensions": {
     "io.github.Hexchat.Plugin": {
