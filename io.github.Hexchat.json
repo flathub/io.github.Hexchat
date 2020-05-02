@@ -35,20 +35,12 @@
     "shared-modules/lua5.3/lua-5.3.5.json",
     {
       "name": "lgi",
-      "no-autogen": true,
-      "make-install-args": [
-          "LUA_LIBDIR=/app/lib/lua/5.3",
-          "LUA_SHAREDIR=/app/share/lua/5.3"
-      ],
+      "buildsystem": "meson",
       "sources": [
         {
-          "type": "archive",
-          "url": "https://github.com/pavouk/lgi/archive/0.9.2.tar.gz",
-          "sha256": "cfc4105482b4730b3a40097c9d9e7e35c46df2fb255370bdeb2f45a886548c4f"
-        },
-        {
-          "type": "shell",
-          "commands": [ "sed -i 's|/usr/local|/app|' ./lgi/Makefile" ]
+          "type": "git",
+          "url": "https://github.com/pavouk/lgi.git",
+          "commit": "95418635aa8151a516d43166227ea2b9d4c4403f"
         }
       ]
     },
