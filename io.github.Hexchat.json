@@ -32,15 +32,14 @@
   "modules": [
     "shared-modules/gtk2/gtk2.json",
     "shared-modules/dbus-glib/dbus-glib-0.110.json",
-    "org.luajit.Luajit.json",
+    "shared-modules/lua5.3/lua-5.3.5.json",
     {
       "name": "lgi",
       "no-autogen": true,
-      "build-options": {
-        "env": {
-          "LUA_CFLAGS": "-I/app/include/luajit-2.1"
-        }
-      },
+      "make-install-args": [
+          "LUA_LIBDIR=/app/lib/lua/5.3",
+          "LUA_SHAREDIR=/app/share/lua/5.3"
+      ],
       "sources": [
         {
           "type": "archive",
@@ -59,7 +58,8 @@
       "config-opts": [
         "--buildtype=release",
         "-Ddbus-service-use-appid=true",
-        "-Dwith-perl=false"
+        "-Dwith-perl=false",
+        "-Dwith-lua=lua"
       ],
       "build-options": {
         "cflags": "-Wno-error=missing-include-dirs"
