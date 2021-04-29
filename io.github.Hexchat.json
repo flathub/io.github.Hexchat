@@ -59,7 +59,6 @@
         "cflags": "-Wno-error=missing-include-dirs"
       },
       "cleanup": [
-        "/lib/pkgconfig",
         "/share/man"
       ],
       "post-install": [
