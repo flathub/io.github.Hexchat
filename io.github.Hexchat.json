@@ -2,7 +2,7 @@
   "app-id": "io.github.Hexchat",
   "branch": "stable",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "40",
+  "runtime-version": "41",
   "sdk": "org.gnome.Sdk",
   "command": "hexchat",
   "rename-icon": "hexchat",
@@ -69,7 +69,7 @@
         {
           "type": "git",
           "url": "https://github.com/hexchat/hexchat.git",
-          "commit": "65edc9ad9a561e0d3aec9fde23b8c810272890d3"
+          "commit": "v2.16.0"
         },
         {
           "type": "patch",
