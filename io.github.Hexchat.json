@@ -69,6 +69,10 @@
         },
         {
           "type": "patch",
+          "path": "fix-url-open-crash.patch"
+        },
+        {
+          "type": "patch",
           "path": "Load-plugins-from-Flatpak-extensions.patch"
         }
       ]

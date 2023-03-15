@@ -1,0 +1,23 @@
+From c48afe3799e648e0ded2bf07deeb082028b6c5ac Mon Sep 17 00:00:00 2001
+From: Patrick Griffis <tingping@tingping.se>
+Date: Tue, 14 Mar 2023 21:21:22 -0500
+Subject: [PATCH] Be even more picky about invalid URLs
+
+---
+ src/fe-gtk/fe-gtk.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/src/fe-gtk/fe-gtk.c b/src/fe-gtk/fe-gtk.c
+index 38e6172d3..125ab5779 100644
+--- a/src/fe-gtk/fe-gtk.c
++++ b/src/fe-gtk/fe-gtk.c
+@@ -1065,8 +1065,7 @@ uri_contains_forbidden_characters (const char *uri)
+ {
+ 	while (*uri)
+ 	{
+-		/* This is not an exhaustive list, the full URI has segments that allow characters like "[]:" for example. */
+-		if (strchr ("`<> ${}\"+", *uri) != NULL || (*uri & 0x80) /* non-ascii */)
++		if (!g_ascii_isalnum (*uri) && !strchr ("-._~:/?#[]@!$&'()*+,;=", *uri))
+ 			return TRUE;
+ 		uri++;
+ 	}
