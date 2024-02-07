@@ -68,11 +68,7 @@
         {
           "type": "git",
           "url": "https://github.com/hexchat/hexchat.git",
-          "commit": "v2.16.1"
-        },
-        {
-          "type": "patch",
-          "path": "fix-url-open-crash.patch"
+          "commit": "v2.16.2"
         },
         {
           "type": "patch",
