@@ -2,7 +2,7 @@
   "app-id": "io.github.Hexchat",
   "branch": "stable",
   "runtime": "org.freedesktop.Platform",
-  "runtime-version": "23.08",
+  "runtime-version": "25.08",
   "sdk": "org.freedesktop.Sdk",
   "command": "hexchat",
   "finish-args": [
@@ -16,7 +16,7 @@
   ],
   "add-extensions": {
     "io.github.Hexchat.Plugin": {
-      "version": "23.08",
+      "version": "25.08",
       "directory": "extensions",
       "add-ld-path": "lib",
       "merge-dirs": "lib/hexchat/plugins",
@@ -32,6 +32,8 @@
     "shared-modules/lua5.3/lua-5.3.5.json",
     "shared-modules/libcanberra/libcanberra.json",
     "python3-cffi.json",
+    "python3-packaging.json",
+    "meson-python.json",
     {
       "name": "lgi",
       "buildsystem": "meson",
